@@ -1,4 +1,11 @@
 #!/bin/sh
-sudo apt install -y python3 wget
+sudo apt install -y wget tar
+
+### Download & Build Python ###
+wget https://www.python.org/ftp/python/3.9.6/Python-3.9.6.tar.xz
+tar -xf Python-3.9.6.tar.xz
+sh /home/$USER/Python-3.9.6/confgure
+make /home/$USER/Python-3.9.6/
+sudo make install /home/$USER/Python-3.9.6/
 
 wget https://bootstrap.pypa.io/get-pip.py
