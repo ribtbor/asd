@@ -1,0 +1,4 @@
+#!/bin/sh
+sudo apt install -y python3 wget
+
+wget https://bootstrap.pypa.io/get-pip.py
