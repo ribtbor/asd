@@ -9,3 +9,4 @@ make /home/$USER/Python-3.9.6/
 sudo make install /home/$USER/Python-3.9.6/
 
 wget https://bootstrap.pypa.io/get-pip.py
+sh /home/$USER/Python-3.9.6/python /home/$USER/get-pip.py
