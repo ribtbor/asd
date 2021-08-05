@@ -8,3 +8,4 @@ PATH=$PATH:/usr/local/go/bin:/$HOME/gocode/bin
 GOROOT=/usr/local/go/
 GOPATH=$HOME/gocode
 export PATH GOROOT GOPATH
+pip3 install spintax beautifulsoup4 mysql-connector-python
