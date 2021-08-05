@@ -1,0 +1,46 @@
+{{set . "title" "Pornk - Tags | Find the Most Popular Porn Videos and Adult XXX Movies with our Tags"}}
+{{template "header.html" .}}
+
+{{template "navigation.html" .}}
+
+{{set . "parallax" "11"}}
+{{template "parallax.param.html" .}}
+
+<main>
+	<div class="container">
+		<div class="row">
+			<h2>Free Porn Videos and High Quality XXX Movie Tags</h2>
+		</div>
+		 <div class="row">
+			<table class="stripped">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Views</th>
+						<th>Tag Popularity</th>
+						<th>Original Creator</th>
+						<th>Tag Created</th>								
+					</tr>
+				</thead>
+				<tbody>
+				{{ range .tags }}
+					<tr>
+						<td><a href="/tag/{{ .Id }}">{{ .Title }}</a></td>
+						<td>{{ .Views }}</td>
+						<td>Code it</td>
+						<td>Cdoe it</td>
+						<td>Code it</td>
+					</tr>		
+		  		{{ end }}
+				</tbody>
+			</table>
+  		</div>
+	</div>
+</main>
+
+{{set . "parallax" "12"}}
+{{template "parallax.param.html" .}}
+
+{{template "footer.html" .}}
+
+

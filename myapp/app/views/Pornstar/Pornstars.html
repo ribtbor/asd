@@ -1,0 +1,61 @@
+{{set . "title" "Pornk - Pornstars | Find the Best Pornstar Videos and Newest XXX Model Movies" }}
+{{template "header.html" .}}
+
+{{template "navigation.html" .}}
+
+{{set . "parallax" "7"}}
+{{template "parallax.param.html" .}}
+
+<main>
+	<div class="container">
+		<div class="row">
+			<h2>Pornstars and Adult XXX Models</h2>
+		</div>
+		<div class="row">
+		{{ range .pornstars }}
+		    	<div class="col s6 m3 l2">
+     			 	<div class="card" style="height:425px;">
+       				 	<div class="card-image">
+         				 	<img src="/public/img/pornstar/{{ .Id }}.jpg" alt="Pornstar {{ .First}} {{ .Last}}" />
+         				 	<span class="card-title"><a href="/pornstar/{{ .Id}}" style="color:white">{{ .First }} {{ .Last}}</a></span>
+        				</div>
+        				<div class="card-content">
+						<h5>{{ .First }} {{ .Last }}</h5>
+          					<p>{{ .Bio }}</p>
+						<table>
+							<tbody>
+								<tr>
+									<td>Views</td>
+									<td>{{ .Views }}</td>
+								</tr>
+								<tr>
+									<td>Videos</td>
+									<td>Code this</td>
+								</tr>
+							</tbody>
+						</table>
+       				 	</div>
+     			 	</div>
+		    	</div>
+		{{ end }}
+  		</div>
+		<div class="row center-align">
+			{{ .pagination }}
+			<ul class="pagination">
+				<li class="waves-effect"><a href="/pornstars/1"><i class="material-icons">chevron_left</i></a></li>
+    				<li class="waves-effect"><a href="/pornstars/{{ .pagination.Previous }}"><i class="material-icons">arrow_back</i></a></li>
+    				{{ range .pagination.Middle }}
+					<li class="waves-effect"><a href="/pornstars/{{ . }}">{{ . }}</a></li>
+				{{ end }}
+   				<li class="waves-effect"><a href="/pornstars/{{ .pagination.Next }}"><i class="material-icons">arrow_forward</i></a></li>
+				<li class="waves-effect"><a href="/pornstars/{{ .pagination.Last }}"><i class="material-icons">chevron_right</i></a></li>
+			</ul>
+		</div>
+
+	</div>
+</main>
+
+{{set . "parallax" "8"}}
+{{template "parallax.param.html" .}}
+
+{{template "footer.html" .}}

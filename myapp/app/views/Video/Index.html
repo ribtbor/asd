@@ -1,0 +1,32 @@
+{{set . "title" "Pornk - Videos | The Best Free HD High Quality Porn Videos and XXX Movies"}}
+{{template "header.html" .}}
+{{template "navigation.html" .}}
+
+{{set . "parallax" "13"}}
+{{template "parallax.param.html" .}}
+
+<main>
+  <div class="container">
+    <div class="row">
+      <h5>{{ .video.Title }}</h5>
+	<p>{{ .video.Description }}</p>
+    </div>      
+
+	
+
+  <div class="row">
+	<div class="video-container">
+        	<video class="responsive-video" controls width="100%">
+    			<source src="http://media.pornk.tk/video/{{ .video.Id }}.mp4" type="video/mp4">
+      		</video>	
+	</div>
+  </div>
+
+    
+  </div>
+</main>
+
+{{set . "parallax" "14"}}
+{{template "parallax.param.html" .}}
+
+{{template "footer.html" .}}

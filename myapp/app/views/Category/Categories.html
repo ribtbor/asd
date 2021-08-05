@@ -1,0 +1,67 @@
+{{set . "title" "Pornk - Categories | Free Hardcore Porn Videos and XXX Top Rated Movies "}}
+{{template "header.html" .}}
+
+{{template "navigation.html" .}}
+
+{{set . "parallax" "1"}}
+{{template "parallax.param.html" .}}
+
+
+<main>
+	<div class="container">
+		<div class="row">
+
+			<div class="col s12 m4 l3">
+				<div class="row">
+					<h2>Free Porn Video Categories</h2>
+					<div class="collection">
+					{{ range .categories }}
+        					<a href="/category/{{ .Id }}" class="collection-item">{{ .Title }}</a>
+					{{ end }}
+      					</div>
+				</div>
+			</div>
+		
+
+			<div class="col s12 m8 l9">
+				<div class="row">
+					<h2>High Quality XXX Movie Categories</h2>
+				</div>
+		 		<div class="row">
+				{{ range .categories }}
+		    			<div class="col s12 m6 l3">
+     			 			<div class="card" style="height:420px">
+       				 			<div class="card-image">
+         				 			<img src="/public/img/category/{{ .Id }}.jpg">
+         				 			<span class="card-title"><a href="/category/{{ .Id }}" style="color:white;">{{ .Title }}</a></span>
+        						</div>
+        						<div class="card-content">
+								<h3>{{ .Title }}</h3>
+          							<p>{{ .Description }}</p>
+								<table>
+									<tbody>
+										<tr>
+											<td>Views</td>
+											<td>{{ .Views }}</td>
+										</tr>
+										<tr>
+											<td>Videos</td>
+											<td>Code this</td>
+										</tr>
+									</tbody>
+								</table>
+       				 			</div>
+     			 			</div>
+		    			</div>
+				{{ end }}
+  				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+{{set . "parallax" "2"}}
+{{template "parallax.param.html" .}}
+
+{{template "footer.html" .}}
+
