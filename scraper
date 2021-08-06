@@ -1,84 +1,72 @@
-import requests, urllib.request, mysql.connect, random, 
+import requests, urllib.request, mysql.connect, random, threading, time 
 from bs4 import BeautifulSoup
+from random import randint
 
-res = requests.get("https://www.pornhub.com/categories")
-soup = BeautifulSoup(res.content,"html.parser")
-categories = soup.find_all("div",class_="category-wrapper")
 mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
 mycursor = mydb.cursor()
 
-i = 1
-for x in categories:
-	if x.span.a != None:
-		sql = "INSERT INTO categories (title) VALUES ('{title}')".format(title= x.span.a["data-mxptext"])
-		mycursor.execute(sql)
-		urllib.request.urlretrieve(x.a.img["data-thumb_url"], "/root/myapp/public/img/category/" + str(i) +".jpg")
-		i = i + 1
-mydb.commit()
+def get_categories():
+	res = requests.get("https://www.pornhub.com/categories")
+	soup = BeautifulSoup(res.content,"html.parser")
+	categories = soup.find_all("div",class_="category-wrapper")
+	i = 1
+	for x in categories:
+		if x.span.a != None:
+			sql = "INSERT INTO categories (title) VALUES ('{title}')".format(title= x.span.a["data-mxptext"])
+			mycursor.execute(sql)
+			urllib.request.urlretrieve(x.a.img["data-thumb_url"], "/root/myapp/public/img/category/" + str(i) +".jpg")
+			i = i + 1
+			mydb.commit()
 
-mycursor = mydb.cursor()
-ppp = 1
-for x in range(1,200):
-	page = "https://www.pornhub.com/pornstars?page=" + str(x)
+def get_pornstars():
+	ppp = 1
+	for x in range(1,200):
+		page = "https://www.pornhub.com/pornstars?page=" + str(x)
+		res = requests.get(page)
+		soup = BeautifulSoup(res.content,"html.parser")
+		pornstars = soup.find("ul",id="popularPornstars")
+		pstars = pornstars.find_all("div",class_="wrap")
+		for y in pstars:	
+			length = len(str(y.a.img['alt']).split(" "))
+			if length == 1:
+				first = str(y.a.img['alt'].split(" ")[0])
+				sql = 'INSERT INTO pornstars (first) VALUES ("{}")'.format(first)
+			if length == 2:
+				first = str(y.a.img['alt'].split(" ")[0])
+				last = str(y.a.img['alt'].split(" ")[1])
+				sql = 'INSERT INTO pornstars (first,last) VALUES ("{}","{}")'.format(first,last)
+			if length == 3:
+				first = str(y.a.img['alt'].split(" ")[0])
+				last = str(y.a.img['alt'].split(" ")[1]) + " " + str(y.a.img['alt'].split(" ")[2])
+				sql = 'INSERT INTO pornstars (first,last) VALUES ("{}","{}")'.format(first,last)
+			mycursor.execute(sql)		
+			urllib.request.urlretrieve(y.a.img["data-src"], "/root/myapp/public/img/pornstar/" + str(ppp) +".jpg")
+			ppp = ppp + 1
+			mydb.commit()
+
+def get_tags():
+	page = "http://porngifer.com/tags/"
 	res = requests.get(page)
 	soup = BeautifulSoup(res.content,"html.parser")
-	pornstars = soup.find("ul",id="popularPornstars")
-	pstars = pornstars.find_all("div",class_="wrap")
-	for y in pstars:	
-		length = len(str(y.a.img['alt']).split(" "))
-		if length == 1:
-			first = str(y.a.img['alt'].split(" ")[0])
-			sql = 'INSERT INTO pornstars (first) VALUES ("{}")'.format(first)
-		if length == 2:
-			first = str(y.a.img['alt'].split(" ")[0])
-			last = str(y.a.img['alt'].split(" ")[1])
-			sql = 'INSERT INTO pornstars (first,last) VALUES ("{}","{}")'.format(first,last)
-		if length == 3:
-			first = str(y.a.img['alt'].split(" ")[0])
-			last = str(y.a.img['alt'].split(" ")[1]) + " " + str(y.a.img['alt'].split(" ")[2])
-			sql = 'INSERT INTO pornstars (first,last) VALUES ("{}","{}")'.format(first,last)
-
+	tags = soup.find_all("div",class_="tag-link")
+	for x in tags:
+		tag_name = x.a.get_text()
+		tag_name = str(tag_name).split("(")[0].strip()
+		sql = 'INSERT INTO tags (title) VALUES ("{}")'.format(tag_name)
 		print(sql)
-		mycursor.execute(sql)		
-		urllib.request.urlretrieve(y.a.img["data-src"], "/root/myapp/public/img/pornstar/" + str(ppp) +".jpg")
-		ppp = ppp + 1
+		mycursor.execute(sql)
 		mydb.commit()
 
-mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
-mycursor = mydb.cursor()
-page = "http://porngifer.com/tags/"
-res = requests.get(page)
-soup = BeautifulSoup(res.content,"html.parser")
-tags = soup.find_all("div",class_="tag-link")
-for x in tags:
-	tag_name = x.a.get_text()
-	tag_name = str(tag_name).split("(")[0].strip()
-	sql = 'INSERT INTO tags (title) VALUES ("{}")'.format(tag_name)
-	print(sql)
-	mycursor.execute(sql)
-	mydb.commit()
-
-from random import randint
-
-mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
-mycursor = mydb.cursor()
-
-i = 1
-for x in range(1,6002):
-	sql = "UPDATE gifs SET category_id={} WHERE id={}".format(randint(1,97),i)
-	print(sql)
-	mycursor.execute(sql)
-	i = i + 1
-mydb.commit()
-from random import randint
-import mysql.connector
-
-mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
-mycursor = mydb.cursor()
-
-while True:
-	sql = "INSERT INTO taggings (tag_id,video_id) VALUES ({},{})".format(randint(1,763),randint(1,6001))
-	print(sql)
-	mycursor.execute(sql)
-	mydb.commit()
-
+def set_gifs():
+	i = 1
+	for x in range(1,6002):
+		sql = "UPDATE gifs SET category_id={} WHERE id={}".format(randint(1,97),i)
+		print(sql)
+		mycursor.execute(sql)
+		i = i + 1
+		mydb.commit()
+	while True:
+		sql = "INSERT INTO taggings (tag_id,video_id) VALUES ({},{})".format(randint(1,763),randint(1,6001))
+		print(sql)
+		mycursor.execute(sql)
+		mydb.commit()
