@@ -70,3 +70,11 @@ def set_gifs():
 		print(sql)
 		mycursor.execute(sql)
 		mydb.commit()
+
+def get_gifs():
+	for x in range(1,8000):
+		location = "/root/asd/myapp/public/img/gif/{}.gif".format(x) 
+		href = "https://cdn.porngifs.com/img/{}".format(x)
+		urllib.request.urlretrieve(href,location)
+
+get_gifs()
