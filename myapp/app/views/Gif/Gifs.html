@@ -1,0 +1,45 @@
+{{set . "title" "Pornk - Videos | New Hot Porn Videos and Best Adult Movies"}}
+{{template "header.html" .}}
+{{template "navigation.html" .}}
+{{set . "parallax" "15"}}
+{{template "parallax.param.html" .}}
+<main>
+	<div class="container">
+		<div class="row">AD SPACE HERE</div>
+
+    		<div class="row">
+      			<h2>Most Popular Videos</h2>
+    		</div>      
+
+  		<div class="row">
+		{{ range .videos }}
+    			<div class="col s12 m6 l3">
+      				<div class="card" style="height:420px;">
+					<div class="card-image">
+  						<img src="/public/gif/{{ .Id }}.gif" alt="{{ .Title }}"/>
+					</div>
+        				<div class="card-content" style="padding:0">
+						<h5 class="white-text"><a href="/video/{{ .Id }}" style="color:black;">{{ .Title }}</a></h5>
+          					<p style="padding:24px;">{{ .Description }}</p>
+					</div>
+				</div>
+			</div>
+		{{ end }}	
+  		</div>
+		<div class="row center-align">
+			{{ .pagination }}
+			<ul class="pagination">
+				<li class="waves-effect"><a href="/videos/1"><i class="material-icons">chevron_left</i></a></li>
+    				<li class="waves-effect"><a href="/videos/{{ .pagination.Previous }}"><i class="material-icons">arrow_back</i></a></li>
+    				{{ range .pagination.Middle }}
+					<li class="waves-effect"><a href="/videos/{{ . }}">{{ . }}</a></li>
+				{{ end }}
+   				<li class="waves-effect"><a href="/videos/{{ .pagination.Next }}"><i class="material-icons">arrow_forward</i></a></li>
+				<li class="waves-effect"><a href="/videos/{{ .pagination.Last }}"><i class="material-icons">chevron_right</i></a></li>
+			</ul>
+		</div>
+	</div>
+{{set . "parallax" "16"}}
+{{template "parallax.param.html" .}}
+</main>
+{{template "footer.html" .}}
