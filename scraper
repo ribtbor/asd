@@ -1,4 +1,4 @@
-import requests, urllib.request, mysql.connect, random, threading, time 
+import requests, urllib.request, mysql.connector, random, threading, time 
 from bs4 import BeautifulSoup
 from random import randint
 
