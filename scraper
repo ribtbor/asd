@@ -82,6 +82,6 @@ def get_gifs():
 		random_selection = randint(1,length-1)
 		random_index = list[random_selection]
 		title = spintax.spin(random_index)
-		sql = "INSERT INTO"
+		sql = "INSERT INTO gifs{}"
 
 get_gifs()

@@ -13,6 +13,9 @@ GET	/video/:id				Video.Index
 GET	/videos					Video.Videos
 GET	/videos/:page				Video.Videos
 
+GET	/gif/:id				Gif.Index
+GET	/gifs					Gif.Gifs
+
 GET	/category/:id				Category.Index
 GET	/category/:id/:page			Category.Index
 GET	/categories				Category.Categories

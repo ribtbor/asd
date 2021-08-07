@@ -23,6 +23,6 @@ func InitDB() {
 	db.AutoMigrate(&models.Casting{})
 	db.AutoMigrate(&models.Tag{})
 	db.AutoMigrate(&models.Tagging{})
-	
+	db.AutoMigrate(&models.Gif{})
 	DB=db
 }
