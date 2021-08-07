@@ -1,4 +1,4 @@
-import requests, urllib.request, mysql.connector, random, threading, time, spintax 
+import requests, urllib.request, mysql.connector, random, threading, time, spintax, concurrent.futures 
 from bs4 import BeautifulSoup
 from random import randint
 
@@ -71,6 +71,9 @@ def set_gifs():
 		mycursor.execute(sql)
 		mydb.commit()
 
+with concurrent.futures.ThreadPoolExecutor() as executor:
+	executor.submit(get_gifs,)
+
 def get_gifs():
 	for x in range(1,8000):
 		location = "/root/asd/myapp/public/gif/{}.gif".format(x) 
@@ -82,6 +85,8 @@ def get_gifs():
 		random_selection = randint(1,length-1)
 		random_index = list[random_selection]
 		title = spintax.spin(random_index)
-		sql = "INSERT INTO gifs{}"
+		sql = 'INSERT INTO gifs (title) VALUES ("")'.format(title)
+		mycursor.execute(sql)
+		mydb.commit()
 
 get_gifs()
