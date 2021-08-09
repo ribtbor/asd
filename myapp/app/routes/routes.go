@@ -129,6 +129,25 @@ func (_ tCategory) Categories(
 }
 
 
+type tGif struct {}
+var Gif tGif
+
+
+func (_ tGif) Index(
+		) string {
+	args := make(map[string]string)
+	
+	return revel.MainRouter.Reverse("Gif.Index", args).URL
+}
+
+func (_ tGif) Gifs(
+		) string {
+	args := make(map[string]string)
+	
+	return revel.MainRouter.Reverse("Gif.Gifs", args).URL
+}
+
+
 type tPornstar struct {}
 var Pornstar tPornstar
 

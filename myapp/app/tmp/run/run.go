@@ -158,6 +158,32 @@ func Register() {
 			
 		})
 	
+	revel.RegisterController((*controllers1.Gif)(nil),
+		[]*revel.MethodType{
+			&revel.MethodType{
+				Name: "Index",
+				Args: []*revel.MethodArg{ 
+				},
+				RenderArgNames: map[int][]string{ 
+					24: []string{ 
+						"video",
+					},
+				},
+			},
+			&revel.MethodType{
+				Name: "Gifs",
+				Args: []*revel.MethodArg{ 
+				},
+				RenderArgNames: map[int][]string{ 
+					62: []string{ 
+						"videos",
+						"pagination",
+					},
+				},
+			},
+			
+		})
+	
 	revel.RegisterController((*controllers1.Pornstar)(nil),
 		[]*revel.MethodType{
 			&revel.MethodType{
