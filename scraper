@@ -71,10 +71,12 @@ def set_gifs():
 		mycursor.execute(sql)
 		mydb.commit()
 
-def get_gifs(index):
+def download_gifs(index):
 	location = "/root/asd/myapp/public/gif/{}.gif".format(index) 
 	href = "https://cdn.porngifs.com/img/{}".format(index)
 	urllib.request.urlretrieve(href,location)
+
+def insert_gifs(index):
 	file = open("content","r")
 	list = file.readlines()
 	length = len(list)
@@ -83,8 +85,9 @@ def get_gifs(index):
 	title = spintax.spin(random_index)
 	sql = 'INSERT INTO gifs (title) VALUES ("{}")'.format(title)
 	mycursor.execute(sql)
-	mydb.commit()
+#with concurrent.futures.ThreadPoolExecutor() as a:
+#        a.map(download_gifs,range(1,8001))
 
-with concurrent.futures.ThreadPoolExecutor() as executor:
-        executor.map(get_gifs,range(1,8001))
-
+with concurrent.futures.ThreadPoolExecutor() as e:
+	e.map(insert_gifs,range(1,8001))
+mydb.commit()
