@@ -2,9 +2,6 @@ import requests, urllib.request, mysql.connector, random, threading, time, spint
 from bs4 import BeautifulSoup
 from random import randint
 
-mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
-mycursor = mydb.cursor()
-
 def get_categories():
 	res = requests.get("https://www.pornhub.com/categories")
 	soup = BeautifulSoup(res.content,"html.parser")
@@ -84,10 +81,14 @@ def insert_gifs(index):
 	random_index = list[random_selection]
 	title = spintax.spin(random_index)
 	sql = 'INSERT INTO gifs (title) VALUES ("{}")'.format(title)
+	print(sql)
+	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
+	mycursor = mydb.cursor()
 	mycursor.execute(sql)
-#with concurrent.futures.ThreadPoolExecutor() as a:
-#        a.map(download_gifs,range(1,8001))
+	mydb.commit()
+
+with concurrent.futures.ThreadPoolExecutor() as a:
+        a.map(download_gifs,range(1,8001))
 
 with concurrent.futures.ThreadPoolExecutor() as e:
 	e.map(insert_gifs,range(1,8001))
-mydb.commit()
