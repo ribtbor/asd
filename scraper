@@ -63,11 +63,11 @@ def ins_pornstars(list):
 	first = list[0]
 	last = list[1]
 	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
-        mycursor = mydb.cursor()
-        sql = 'INSERT INTO pornstars (first,last) VALUES ("{}","{}")'.format(first,last)
-        print(sql)
-        mycursor.execute(sql)
-        mydb.commit()
+	mycursor = mydb.cursor()
+	sql = 'INSERT INTO pornstars (first,last) VALUES ("{}","{}")'.format(first,last)
+	print(sql)
+	mycursor.execute(sql)
+	mydb.commit()
 
 def get_tags():
 	page = "http://porngifer.com/tags/"
@@ -98,7 +98,7 @@ def set_gifs_category(index):
 	mycursor.execute(sql)
 	mydb.commit()
 
-def set_gifs_tags(index)
+def set_gifs_tags(index):
 	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
 	mycursor = mydb.cursor()
 	sql = "INSERT INTO taggings (tag_id,video_id) VALUES ({},{})".format(randint(1,763),randint(1,8001))
@@ -128,7 +128,7 @@ def insert_gifs(index):
 get_categories()
 
 with concurrent.futures.ThreadPoolExecutor() as a:
-        a.map(download_gifs,range(1,8001))
+	a.map(download_gifs,range(1,8001))
 	a.map(insert_gifs,range(1,8001))
 	a.map(insert_tags,get_tags())
 	a.map(get_pornstar_data(),range(1,201))
