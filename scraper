@@ -2,18 +2,32 @@ import requests, urllib.request, mysql.connector, random, threading, time, spint
 from bs4 import BeautifulSoup
 from random import randint
 
+l = 1
+def dl_categories(index):
+	urllib.request.urlretrieve(index[1], "/root/myapp/public/img/category/" + str(l) +".jpg")
+	l = l + 1
+
+def ins_categories(index):
+	cate_title = index[0]
+	sql = 'INSERT INTO categories (title) VALUES ("{}")'.format(cate_title)
+	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
+        mycursor = mydb.cursor()
+        mycursor.execute(sql)
+        mydb.commit()
+
+list_u
 def get_categories():
+	dop_arry
 	res = requests.get("https://www.pornhub.com/categories")
-	soup = BeautifulSoup(res.content,"html.parser")
-	categories = soup.find_all("div",class_="category-wrapper")
-	i = 1
+        soup = BeautifulSoup(res.content,"html.parser")
+        categories = soup.find_all("div",class_="category-wrapper")
 	for x in categories:
 		if x.span.a != None:
-			sql = "INSERT INTO categories (title) VALUES ('{title}')".format(title= x.span.a["data-mxptext"])
-			mycursor.execute(sql)
-			urllib.request.urlretrieve(x.a.img["data-thumb_url"], "/root/myapp/public/img/category/" + str(i) +".jpg")
-			i = i + 1
-			mydb.commit()
+			dop_arry.append(x.span.a["data-mxptext"])
+			dop_arry.append(x.a.img["data-thumb_url"])	
+	list_u.append(dop_arry)
+
+
 
 list_x
 def get_pornstar_data(index):
@@ -107,11 +121,15 @@ def insert_gifs(index):
 	mycursor.execute(sql)
 	mydb.commit()
 
+get_categories()
+
 with concurrent.futures.ThreadPoolExecutor() as a:
         a.map(download_gifs,range(1,8001))
 	a.map(insert_gifs,range(1,8001))
 	a.map(insert_tags,get_tags())
 	a.map(get_pornstar_data(),range(1,201))
+	a.map(dl_categories,list_u)
+	a.map(ins_categories,list_u)
 with concurrent.futures.ThreadPoolExecutor() as e:
 	e.map(set_gifs_category,range(1,8001))
 	e.map(set_gifs_tags,range(1,20000))
