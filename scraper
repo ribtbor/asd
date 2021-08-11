@@ -40,21 +40,23 @@ def get_pornstars():
 			urllib.request.urlretrieve(y.a.img["data-src"], "/root/myapp/public/img/pornstar/" + str(ppp) +".jpg")
 			ppp = ppp + 1
 			mydb.commit()
-# START HERE
+
 def get_tags():
 	page = "http://porngifer.com/tags/"
 	res = requests.get(page)
 	soup = BeautifulSoup(res.content,"html.parser")
 	tags = soup.find_all("div",class_="tag-link")
-	for x in tags:
-		tag_name = x.a.get_text()
-		tag_name = str(tag_name).split("(")[0].strip()
-		sql = 'INSERT INTO tags (title) VALUES ("{}")'.format(tag_name)
-		print(sql)
-		mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
-		mycursor = mydb.cursor()
-		mycursor.execute(sql)
-		mydb.commit()
+	return tags
+
+def insert_tags(list):
+	tag_name = list.a.get_text()
+	tag_name = str(tag_name).split("(")[0].strip()
+	sql = 'INSERT INTO tags (title) VALUES ("{}")'.format(tag_name)
+	print(sql)
+	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
+	mycursor = mydb.cursor()
+	mycursor.execute(sql)
+	mydb.commit()
 
 def set_gifs_category(index):
 	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
@@ -94,7 +96,7 @@ def insert_gifs(index):
 with concurrent.futures.ThreadPoolExecutor() as a:
         a.map(download_gifs,range(1,8001))
 	a.map(insert_gifs,range(1,8001))
-
+	a.map(insert_tags,get_tags())
 with concurrent.futures.ThreadPoolExecutor() as e:
 	e.map(set_gifs_category,range(1,8001))
 	e.map(set_gifs_tags,range(1,20000))
