@@ -37,3 +37,17 @@ Revel engine is listening on.. localhost:35751
 Revel proxy is listening, point your browser to : 80
 
 Time to recompile 1.624696803s
+  File "/root/asd/scraper", line 47
+    last = str(y.a.img['alt'].split(" ")[1])
+                                           ^
+TabError: inconsistent use of tabs and spaces in indentation
+Revel executing: run a Revel application
+[33mWARN [0m 19:57:39 harness.go:175: No http.addr specified in the app.conf listening on localhost interface only. This will not allow external access to your application 
+Changed detected, recompiling
+Parsing packages, (may require download if not cached)... Completed
+[32mINFO [0m 19:57:40    app     run.go:34: Running revel server                      
+[32mINFO [0m 19:57:40    app   plugin.go:9: Go to /@tests to run the tests.           
+Revel engine is listening on.. localhost:43889
+Revel proxy is listening, point your browser to : 80
+
+Time to recompile 1.523965619s
