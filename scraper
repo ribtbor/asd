@@ -17,15 +17,15 @@ def ins_categories(index):
 
 list_u
 def get_categories():
-	dop_arry
 	res = requests.get("https://www.pornhub.com/categories")
         soup = BeautifulSoup(res.content,"html.parser")
         categories = soup.find_all("div",class_="category-wrapper")
 	for x in categories:
+		dop_arry = []
 		if x.span.a != None:
 			dop_arry.append(x.span.a["data-mxptext"])
 			dop_arry.append(x.a.img["data-thumb_url"])	
-	list_u.append(dop_arry)
+		list_u.append(dop_arry)
 
 
 
@@ -74,18 +74,25 @@ def get_tags():
 	res = requests.get(page)
 	soup = BeautifulSoup(res.content,"html.parser")
 	tags = soup.find_all("div",class_="tag-link")
-	return tags
+	o = []
+	for x in tags:
+		tag_name = list.a.get_text()
+		tag_name = str(tag_name).split("(")[0].strip()
+		o.append(tag_name)
+	return o
 
 def insert_tags(list):
-	tag_name = list.a.get_text()
-	tag_name = str(tag_name).split("(")[0].strip()
-	sql = 'INSERT INTO tags (title) VALUES ("{}")'.format(tag_name)
+	sql = 'INSERT INTO tags (title) VALUES ("{}")'.format(list)
 	print(sql)
 	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
 	mycursor = mydb.cursor()
 	mycursor.execute(sql)
 	mydb.commit()
 
+
+
+
+##### REVIEW
 def set_gifs_category(index):
 	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
 	mycursor = mydb.cursor()
