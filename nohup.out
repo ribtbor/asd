@@ -8,3 +8,32 @@ Revel engine is listening on.. localhost:38241
 Revel proxy is listening, point your browser to : 80
 
 Time to recompile 1.592834805s
+  File "/root/asd/scraper", line 14
+    mycursor = mydb.cursor()
+                           ^
+TabError: inconsistent use of tabs and spaces in indentation
+Revel executing: run a Revel application
+[33mWARN [0m 19:35:24 harness.go:175: No http.addr specified in the app.conf listening on localhost interface only. This will not allow external access to your application 
+Changed detected, recompiling
+Parsing packages, (may require download if not cached)... Completed
+[32mINFO [0m 19:35:25    app     run.go:34: Running revel server                      
+[32mINFO [0m 19:35:25    app   plugin.go:9: Go to /@tests to run the tests.           
+Revel engine is listening on.. localhost:40095
+Revel proxy is listening, point your browser to : 80
+
+Time to recompile 1.556488198s
+  File "/root/asd/scraper", line 14
+    mycursor = mydb.cursor()
+                           ^
+TabError: inconsistent use of tabs and spaces in indentation
+Revel executing: run a Revel application
+[33mWARN [0m 19:42:51 harness.go:175: No http.addr specified in the app.conf listening on localhost interface only. This will not allow external access to your application 
+Changed detected, recompiling
+[31mERROR[0m 19:42:51 harness.go:326: Failed to start reverse proxy:           [31merror[0m="listen tcp :80: bind: address already in use" 
+Parsing packages, (may require download if not cached)... Completed
+[32mINFO [0m 19:42:52    app     run.go:34: Running revel server                      
+[32mINFO [0m 19:42:52    app   plugin.go:9: Go to /@tests to run the tests.           
+Revel engine is listening on.. localhost:35751
+Revel proxy is listening, point your browser to : 80
+
+Time to recompile 1.624696803s

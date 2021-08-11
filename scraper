@@ -90,9 +90,6 @@ def insert_tags(list):
 	mydb.commit()
 
 
-
-
-##### REVIEW
 def set_gifs_category(index):
 	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
 	mycursor = mydb.cursor()
