@@ -11,15 +11,15 @@ def ins_categories(index):
 	cate_title = index[0]
 	sql = 'INSERT INTO categories (title) VALUES ("{}")'.format(cate_title)
 	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
-        mycursor = mydb.cursor()
-        mycursor.execute(sql)
-        mydb.commit()
+	mycursor = mydb.cursor()
+	mycursor.execute(sql)
+	mydb.commit()
 
 list_u
 def get_categories():
 	res = requests.get("https://www.pornhub.com/categories")
-        soup = BeautifulSoup(res.content,"html.parser")
-        categories = soup.find_all("div",class_="category-wrapper")
+	soup = BeautifulSoup(res.content,"html.parser")
+	categories = soup.find_all("div",class_="category-wrapper")
 	for x in categories:
 		dop_arry = []
 		if x.span.a != None:
