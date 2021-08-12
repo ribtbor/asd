@@ -1,0 +1,141 @@
+import requests, urllib.request, mysql.connector, random, threading, time, spintax, concurrent.futures 
+from bs4 import BeautifulSoup
+from random import randint
+
+l = 1
+def dl_categories(index):
+	urllib.request.urlretrieve(index[1], "/root/myapp/public/img/category/" + str(l) +".jpg")
+	l = l + 1
+
+def ins_categories(index):
+	cate_title = index[0]
+	sql = 'INSERT INTO categories (title) VALUES ("{}")'.format(cate_title)
+	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
+	mycursor = mydb.cursor()
+	mycursor.execute(sql)
+	mydb.commit()
+
+list_u = []
+def get_categories():
+	res = requests.get("https://www.pornhub.com/categories")
+	soup = BeautifulSoup(res.content,"html.parser")
+	categories = soup.find_all("div",class_="category-wrapper")
+	for x in categories:
+		dop_arry = []
+		if x.span.a != None:
+			dop_arry.append(x.span.a["data-mxptext"])
+			dop_arry.append(x.a.img["data-thumb_url"])	
+		list_u.append(dop_arry)
+
+
+
+list_x = []
+def get_pornstar_data(index):
+	page = "https://www.pornhub.com/pornstars?page=" + str(index)
+	res = requests.get(page)
+	soup = BeautifulSoup(res.content,"html.parser")
+	pornstars = soup.find("ul",id="popularPornstars")
+	pstars = pornstars.find_all("div",class_="wrap")
+	for y in pstars:
+		dump_arry
+		length = len(str(y.a.img['alt']).split(" "))
+		if length == 1:
+			first = str(y.a.img['alt'].split(" ")[0])
+			last = ""
+		if length == 2:
+			first = str(y.a.img['alt'].split(" ")[0])
+			last = str(y.a.img['alt'].split(" ")[1])
+		if length == 3:
+			first = str(y.a.img['alt'].split(" ")[0])
+			last = str(y.a.img['alt'].split(" ")[1]) + " " + str(y.a.img['alt'].split(" ")[2])	
+		dump_arry.append(first)
+		dump_arry.append(last)
+		dump_arry.append(y.a.img["data-src"])
+		list_x.append(dump_arry)
+
+i = 1
+def dl_pornstars(list):
+	href = list[2]
+	urllib.request.urlretrieve(href, "/root/myapp/public/img/pornstar/" + str(i) +".jpg")
+	i = i + 1
+
+def ins_pornstars(list):
+	first = list[0]
+	last = list[1]
+	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
+	mycursor = mydb.cursor()
+	sql = 'INSERT INTO pornstars (first,last) VALUES ("{}","{}")'.format(first,last)
+	print(sql)
+	mycursor.execute(sql)
+	mydb.commit()
+
+def get_tags():
+	page = "http://porngifer.com/tags/"
+	res = requests.get(page)
+	soup = BeautifulSoup(res.content,"html.parser")
+	tags = soup.find_all("div",class_="tag-link")
+	o = []
+	for x in tags:
+		tag_name = list.a.get_text()
+		tag_name = str(tag_name).split("(")[0].strip()
+		o.append(tag_name)
+	return o
+
+def insert_tags(list):
+	sql = 'INSERT INTO tags (title) VALUES ("{}")'.format(list)
+	print(sql)
+	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
+	mycursor = mydb.cursor()
+	mycursor.execute(sql)
+	mydb.commit()
+
+
+def set_gifs_category(index):
+	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
+	mycursor = mydb.cursor()
+	sql = "UPDATE gifs SET category_id={} WHERE id={}".format(randint(1,97),index)
+	print(sql)
+	mycursor.execute(sql)
+	mydb.commit()
+
+def set_gifs_tags(index):
+	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
+	mycursor = mydb.cursor()
+	sql = "INSERT INTO taggings (tag_id,video_id) VALUES ({},{})".format(randint(1,763),randint(1,8001))
+	print(sql)
+	mycursor.execute(sql)
+	mydb.commit()
+
+def download_gifs(index):
+	location = "/root/asd/myapp/public/gif/{}.gif".format(index) 
+	href = "https://cdn.porngifs.com/img/{}".format(index)
+	urllib.request.urlretrieve(href,location)
+
+def insert_gifs(index):
+	file = open("content","r")
+	list = file.readlines()
+	length = len(list)
+	random_selection = randint(1,length-1)
+	random_index = list[random_selection]
+	title = spintax.spin(random_index)
+	sql = 'INSERT INTO gifs (title) VALUES ("{}")'.format(title)
+	print(sql)
+	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
+	mycursor = mydb.cursor()
+	mycursor.execute(sql)
+	mydb.commit()
+
+get_categories()
+
+with concurrent.futures.ThreadPoolExecutor() as a:
+	a.map(download_gifs,range(1,8001))
+	a.map(insert_gifs,range(1,8001))
+	a.map(insert_tags,get_tags())
+	a.map(get_pornstar_data(),range(1,201))
+	a.map(dl_categories,list_u)
+	a.map(ins_categories,list_u)
+with concurrent.futures.ThreadPoolExecutor() as e:
+	e.map(set_gifs_category,range(1,8001))
+	e.map(set_gifs_tags,range(1,20000))
+	e.map(dl_pornstars,list_x)
+	e.map(ins_pornstars,list_x)
