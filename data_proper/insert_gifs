@@ -1,0 +1,12 @@
+import spintax, mysql.connector, concurrent.futures
+from random import randint
+
+def insert_gifs(index):
+	list = open("content","r").readlines()
+	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
+	mycursor = mydb.cursor()
+	mycursor.execute('INSERT INTO gifs (title) VALUES ("{}")'.format(spintax.spin(list[randint(0,len(list)-1)])))
+	mydb.commit()
+
+with concurrent.futures.ThreadPoolExecutor() as e:
+	e.map(insert_gifs,range(1,8001))

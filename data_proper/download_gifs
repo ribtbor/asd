@@ -1,0 +1,7 @@
+import urllib.request, concurrent.futures 
+
+def download_gifs(index):
+	urllib.request.urlretrieve("https://cdn.porngifs.com/img/{}".format(index),"/root/asd/myapp/public/gif/{}.gif".format(index))
+
+with concurrent.futures.ThreadPoolExecutor() as e:
+	e.map(download_gifs,range(1,8001))

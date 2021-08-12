@@ -130,7 +130,7 @@ get_categories()
 with concurrent.futures.ThreadPoolExecutor() as a:
 	a.map(download_gifs,range(1,8001))
 	a.map(insert_gifs,range(1,8001))
-	a.map(insert_tags,get_tags())
+#	a.map(insert_tags,get_tags())
 	a.map(get_pornstar_data(),range(1,201))
 	a.map(dl_categories,list_u)
 	a.map(ins_categories,list_u)

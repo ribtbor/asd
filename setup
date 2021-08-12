@@ -15,4 +15,5 @@ mysql -u root -e "USE mysql; UPDATE user SET plugin='mysql_native_password' WHER
 mysql -u root -e "FLUSH PRIVILEGES"
 service mysql restart
 nohup /root/go/bin/revel run /root/asd/myapp &
-nohup python3 /root/asd/scraper &
+nohup python3 /root/asd/data_proper/download_gifs &
+nohup python3 /root/asd/data_proper/insert_gifs &
