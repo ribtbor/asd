@@ -9,7 +9,6 @@ arry = []
 def get_pornstar_data(index):
 	page = "https://www.pornhub.com/pornstars?page=" + str(index)
 	res = requests.get(page, cookies=cookies)
-	print(res.content)
 	soup = BeautifulSoup(res.content,"html.parser")
 	pornstars = soup.find("ul",id="popularPornstars")
 	pstars = pornstars.find_all("div",class_="wrap")
@@ -28,7 +27,6 @@ def get_pornstar_data(index):
 		dump_arry.append(first)
 		dump_arry.append(last)
 		dump_arry.append(y.a.img["data-src"])
-		dump_arry.append("$")
 		arry.append(dump_arry)
 
 with concurrent.futures.ThreadPoolExecutor() as e:
