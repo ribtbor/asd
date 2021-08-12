@@ -1,0 +1,20 @@
+import requests, concurrent.futures, mysql.connector
+from bs4 import BeautifulSoup
+
+res = requests.get("http://porngifer.com/tags/")
+soup = BeautifulSoup(res.content,"html.parser")
+tags = soup.find_all("div",class_="tag-link")
+arry = []
+for x in tags:
+	tag_name = x.a.get_text()
+	tag_name = str(tag_name).split("(")[0].strip()
+	arry.append(tag_name)
+
+def insert_tags(list):
+	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
+	mycursor = mydb.cursor()
+	mycursor.execute('INSERT INTO tags (title) VALUES ("{}")'.format(list))
+	mydb.commit()
+
+with concurrent.futures.ThreadPoolExecutor() as e:
+	e.map(insert_tags,arry)
