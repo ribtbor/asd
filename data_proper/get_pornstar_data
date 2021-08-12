@@ -5,7 +5,6 @@ session = requests.Session()
 session.get("https://www.pornhub.com")
 cookies = session.cookies.get_dict()
 
-arry = []
 def get_pornstar_data(index):
 	page = "https://www.pornhub.com/pornstars?page=" + str(index)
 	res = requests.get(page, cookies=cookies)
@@ -13,7 +12,6 @@ def get_pornstar_data(index):
 	pornstars = soup.find("ul",id="popularPornstars")
 	pstars = pornstars.find_all("div",class_="wrap")
 	for y in pstars:
-		dump_arry = []
 		length = len(str(y.a.img['alt']).split(" "))
 		if length == 1:
 			first = str(y.a.img['alt'].split(" ")[0])
@@ -24,14 +22,12 @@ def get_pornstar_data(index):
 		if length == 3:
 			first = str(y.a.img['alt'].split(" ")[0])
 			last = str(y.a.img['alt'].split(" ")[1]) + " " + str(y.a.img['alt'].split(" ")[2])
-		dump_arry.append(first)
-		dump_arry.append(last)
-		dump_arry.append(y.a.img["data-src"])
-		arry.append(dump_arry)
-
+		dump = '{} {} {}\n'.format(first, last, y.a.img["data-src"])
+		blob = blob + dump
+blob = ""
 with concurrent.futures.ThreadPoolExecutor() as e:
 	e.map(get_pornstar_data,range(1,501))
 
 f = open("pornstar_blob","w")
-f.write(str(arry))
+f.write(blob)
 f.close()
