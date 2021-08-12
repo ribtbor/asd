@@ -1,0 +1,10 @@
+import urllib.request, concurrent.futures
+from os.path import exists
+
+while True:
+	file_exists = exists("/root/asd/data_proper/pornstar_blob")	
+	print(file_exists)
+
+def dl_pornstars(list):
+	href = list[2]
+	urllib.request.urlretrieve(href, "/root/myapp/public/img/pornstar/" + str(i) +".jpg")
