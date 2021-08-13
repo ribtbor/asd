@@ -1,6 +1,7 @@
 import requests, concurrent.futures
 from bs4 import BeautifulSoup
 
+arry = []
 def get_pornstar_data(index):
 	page = "https://www.xvideos.com/pornstars-index/" + str(index)
 	res = requests.get(page)
@@ -16,16 +17,17 @@ def get_pornstar_data(index):
 			first = fragments[0]
 			last = fragments[len(fragments)-1]		
 		img = y.select('div.thumb-inside')[0].div.a.script.string.replace("'",'"').split('document.write(xv.thumbs.replaceThumbUrl("')[1].split("<img src=")[1].split(" ")[0].replace('"','') 
-		dump = '{} {} {} '.format(first, last, img)
-		blob = blob + dump
+		
+		data = '{} {} {}'.format(first, last, img)
+		arry.append(data)
 
 with concurrent.futures.ThreadPoolExecutor() as e:
-	blob = ""
-	e.map(get_pornstar_data,range(1,2))
+	e.map(get_pornstar_data,range(1,300))
 
-print(blob)
+buffer = ""
+for x in arry:
+	buffer = buffer + " " + x
 
-### MAKE TWO FILES
-#f = open("pornstar_blob","w")
-#f.write(blob)
-#f.close()
+f = open("pornstar_blob","w")
+f.write(buffer)
+f.close()
