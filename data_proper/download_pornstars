@@ -1,16 +1,23 @@
 import urllib.request, concurrent.futures
 from os.path import exists
 
-def dl_pornstars(list):
-	href = list[2]
-	urllib.request.urlretrieve(href, "/root/myapp/public/img/pornstar/" + str(i) +".jpg")
+def dl_pornstars(href):
+	urllib.request.urlretrieve(href[1], "/root/myapp/public/img/pornstar/" + str(href[0]) +".jpg")
 
 while True:
 	file_exists = exists("/root/asd/data_proper/pornstar_blob")	
 	if file_exists:
 		f = open("pornstar_blob","r").read()
-		print(f)
-		#with concurrent.futures.ThreadPoolExecutor() as e:
-		#	e.map(dl_pornstars)
+		data = f.split(" ")
+		map = []
+		incrementor = 1
+		for x in range(0, len(data) -1 , 3):
+			map_element = []
+			map_element.append(incrementor)
+			map_element.append(data[x])
+			map.append(map_element)
+			incrementor = incrementor + 1
+
+		with concurrent.futures.ThreadPoolExecutor() as e:
+			e.map(dl_pornstars,map)
 		break
-		

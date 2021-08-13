@@ -23,3 +23,4 @@ mysql -u root -e "FLUSH PRIVILEGES"
 #nohup python3 /root/asd/data_proper/insert_gifs &
 #nohup python3 /root/asd/data_proper/insert_tags &
 #nonup python3 /root/asd/data_proper/get_pornstar_data &
+#nohup python3 /root/asd/data_proper/download_pornstar &
