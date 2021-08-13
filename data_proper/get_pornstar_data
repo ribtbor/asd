@@ -2,7 +2,6 @@ import requests, concurrent.futures, selenium
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
-from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 options = Options()
 options.headless = True
@@ -16,6 +15,7 @@ browser.quit()
 def get_pornstar_data(index):
 	page = "https://www.pornhub.com/pornstars?page=" + str(index)
 	res = requests.get(page, cookies=cookies)
+	print(res.content)
 	soup = BeautifulSoup(res.content,"html.parser")
 	pornstars = soup.find("ul",id="popularPornstars")
 	pstars = pornstars.find_all("div",class_="wrap")
@@ -32,11 +32,13 @@ def get_pornstar_data(index):
 			last = str(y.a.img['alt'].split(" ")[1]) + " " + str(y.a.img['alt'].split(" ")[2])
 		dump = '{} {} {}\n'.format(first, last, y.a.img["data-src"])
 		print(dump)
-		blob = blob + dump
-blob = ""
-with concurrent.futures.ThreadPoolExecutor() as e:
-	e.map(get_pornstar_data,range(1,501))
+#		blob = blob + dump
+get_pornstar_data(1)
 
-f = open("pornstar_blob","w")
-f.write(blob)
-f.close()
+#blob = ""
+#with concurrent.futures.ThreadPoolExecutor() as e:
+#	e.map(get_pornstar_data,range(1,501))
+
+#f = open("pornstar_blob","w")
+#f.write(blob)
+#f.close()
