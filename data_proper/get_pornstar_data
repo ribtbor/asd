@@ -2,9 +2,11 @@ import requests, concurrent.futures, selenium
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 options = Options()
 options.headless = True
+
 browser = webdriver.Firefox(options=options)
 browser.get("https://www.pornhub.com")
 cookies = browser.get_cookies()
