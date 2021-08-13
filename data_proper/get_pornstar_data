@@ -1,7 +1,5 @@
 import requests, concurrent.futures
 from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
 
 def get_pornstar_data(index):
 	page = "https://www.xvideos.com/pornstars-index/" + str(index)
