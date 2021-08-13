@@ -3,12 +3,16 @@ apt update
 apt install -y wget tar python3 python3-pip git mysql-server
 wget https://golang.org/dl/go1.16.6.linux-amd64.tar.gz
 tar -xf go1.16.6.linux-amd64.tar.gz -C /usr/local/ && rm -rf go1.16.6.linux-amd64.tar.gz
-PATH=$PATH:/usr/local/go/bin:/$HOME/go/bin
+PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 GOROOT=/usr/local/go/
 GOPATH=$HOME/go
 export PATH GOROOT GOPATH
 go get github.com/revel/revel github.com/revel/cmd/revel github.com/jinzhu/gorm github.com/go-sql-driver/mysql
-pip3 install requests spintax beautifulsoup4 mysql-connector-python
+pip3 install requests spintax beautifulsoup4 mysql-connector-python selenium
+wget https://github.com/mozilla/geckodriver/releases/download/v0.29.1/geckodriver-v0.29.1-linux64.tar.gz
+tar -xf geckodriver-v0.29.1-linux64.tar.gz
+rm geckodriver-v0.29.1-linux64.tar.gz
+mv geckodriver /usr/local/bin
 service mysql restart
 mysql -u root -e "CREATE DATABASE dumy"
 mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost'"
