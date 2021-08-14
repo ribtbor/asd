@@ -1,0 +1,33 @@
+import urllib.request, concurrent.futures, mysql.connector
+from os.path import exists
+
+def ins_pornstars(arg):
+	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
+	mycursor = mydb.cursor()
+	sql = 'INSERT INTO pornstars (first,last) VALUES ("{}","{}")'.format(arg[0],arg[1])
+	print(sql)
+	mycursor.execute(sql)
+	mydb.commit()
+
+
+while True:
+	file_exists = exists("/root/asd/data_proper/pornstar_blob")	
+	if file_exists:
+		f = open("pornstar_blob","r").read()
+		f.close()
+		data = f.split(" ")
+		map = []
+		first = []
+		for x in range(0,len(data)-1,3):
+			first.append(data[x])
+		last = []
+		for x in range(1,len(data),3):
+			last.append(data[x])
+		for x in range(0,len(first)-1):
+			set = []
+			set.append(first[x])
+			set.append(last[x])
+			map.append(set)
+		with concurrent.futures.ThreadPoolExecutor() as e:
+			e.map(ins_pornstars,map)
+		break

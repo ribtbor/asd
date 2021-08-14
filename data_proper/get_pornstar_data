@@ -18,7 +18,8 @@ def get_pornstar_data(index):
 			last = fragments[len(fragments)-1]		
 		img = y.select('div.thumb-inside')[0].div.a.script.string.replace("'",'"').split('document.write(xv.thumbs.replaceThumbUrl("')[1].split("<img src=")[1].split(" ")[0].replace('"','') 
 		
-		data = '{} {} {}'.format(first, last, img)
+		
+		data = '{} {} {} '.format(first, last, img)
 		arry.append(data)
 
 with concurrent.futures.ThreadPoolExecutor() as e:
@@ -26,7 +27,7 @@ with concurrent.futures.ThreadPoolExecutor() as e:
 
 buffer = ""
 for x in arry:
-	buffer = buffer + " " + x
+	buffer = buffer + x
 
 f = open("pornstar_blob","w")
 f.write(buffer)

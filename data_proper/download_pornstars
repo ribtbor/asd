@@ -8,6 +8,7 @@ while True:
 	file_exists = exists("/root/asd/data_proper/pornstar_blob")	
 	if file_exists:
 		f = open("pornstar_blob","r").read()
+		f.close()
 		data = f.split(" ")
 		map = []
 		incrementor = 1
