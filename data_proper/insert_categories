@@ -1,32 +1,25 @@
 import mysql.connector, concurrent.futures
+from os.path import exists
+
+def ins_categories(x):
+	sql = 'INSERT INTO categories (title) VALUES ("{}")'.format(x)
+	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
+	mycursor = mydb.cursor()
+	mycursor.execute(sql)
+	mydb.commit()
 
 while True:
-	file_exists = exists()
-
-f = open("categories_blob","r")
-data = f.read()
-spread = data.split("  ")
-for x in spread:
-	print(x)
-
-
-while True:
-	file_exists = exists("/root/asd/data_proper/pornstar_blob")	
+	file_exists = exists("/root/asd/data_proper/categories_blob")
 	if file_exists:
-		f = open("pornstar_blob","r").read()
-		f.close()
-		data = f.split(" ")
+		f = open("categories_blob","r")
+		data = f.read()
+		spread = data.split("  ")
+		inc = 1
 		map = []
-		incrementor = 1
-		for x in range(0, len(data) -1 , 3):
-			map_element = []
-			map_element.append(incrementor)
-			map_element.append(data[x])
-			map.append(map_element)
-			incrementor = incrementor + 1
-
+		for x in spread:
+			inc = inc + 1
+			if inc%2 == 1:
+				map.append(x.strip())
 		with concurrent.futures.ThreadPoolExecutor() as e:
-			e.map(dl_pornstars,map)
+			e.map(ins_categories,map)
 		break
-
-

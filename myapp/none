@@ -1,2 +1,4 @@
 INFO  2021/08/13 13:18:16  revel  revel.go:124: Paths                                    revel=/root/go/pkg/mod/github.com/revel/revel@v1.0.0 base=/root/asd/myapp app=/root/asd/myapp/app views=/root/asd/myapp/app/views 
 INFO  2021/08/14 10:35:04  revel  revel.go:124: Paths                                   revel=/root/go/pkg/mod/github.com/revel/revel@v1.0.0 base=/root/asd/myapp app=/root/asd/myapp/app views=/root/asd/myapp/app/views  
+INFO  2021/08/16 14:17:39  revel  revel.go:124: Paths                                    revel=/root/go/pkg/mod/github.com/revel/revel@v1.0.0 base=/root/asd/myapp app=/root/asd/myapp/app views=/root/asd/myapp/app/views 
+INFO  2021/08/16 14:38:04  revel  revel.go:124: Paths                                    revel=/root/go/pkg/mod/github.com/revel/revel@v1.0.0 base=/root/asd/myapp app=/root/asd/myapp/app views=/root/asd/myapp/app/views 
