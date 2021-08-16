@@ -22,9 +22,9 @@ nohup /root/go/bin/revel run /root/asd/myapp &
 nohup python3 /root/asd/data_proper/download_gifs &
 nohup python3 /root/asd/data_proper/insert_gifs &
 nohup python3 /root/asd/data_proper/insert_tags &
-nonup python3 /root/asd/data_proper/get_pornstar_data &
-nohup python3 /root/asd/data_proper/download_pornstar &
-nohup python3 /root/asd/data_proper/insert_pornstar &
+nohup python3 /root/asd/data_proper/get_pornstar_data &
+nohup python3 /root/asd/data_proper/download_pornstars &
+nohup python3 /root/asd/data_proper/insert_pornstars &
 nohup python3 /root/asd/data_proper/get_category_data &
 nohup python3 /root/asd/data_proper/insert_categories &
 nohup python3 /root/asd/data_proper/download_categories &

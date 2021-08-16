@@ -1,0 +1,8 @@
+#!/bin/bash
+mysql -u root -e "DROP DATABASE dumy"
+rm /root/asd/myapp/public/img/*
+rm /root/asd/data_proper/pornstar_blob
+rm /root/asd/data_proper/categories_blob
+rm /root/asd/nohup.out
+kill $(pgrep revel)
+kill $(pgrep myapp)

@@ -13,6 +13,6 @@ for x in list:
 dump = ""
 for x in map:
 	dump = dump + x 
-f = open("categories_blob","w")
+f = open("/root/asd/data_proper/categories_blob","w")
 f.write(dump)
 f.close()

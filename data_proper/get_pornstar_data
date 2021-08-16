@@ -29,6 +29,6 @@ buffer = ""
 for x in arry:
 	buffer = buffer + x
 
-f = open("pornstar_blob","w")
+f = open("/root/asd/data_proper/pornstar_blob","w")
 f.write(buffer)
 f.close()

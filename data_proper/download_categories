@@ -7,7 +7,7 @@ def dl_categories(href):
 while True:
 	file_exists = exists("/root/asd/data_proper/categories_blob")	
 	if file_exists:
-		f = open("categories_blob","r")
+		f = open("/root/asd/data_proper/categories_blob","r")
 		data = f.read().lstrip(" ").split("   ")
 		f.close()
 		map = []
