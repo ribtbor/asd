@@ -4,10 +4,6 @@
 {{template "navigation.html" .}}
 
 <main>
-
-{{set . "parallax" "3"}}
-{{template "parallax.param.html" .}}
-
 	<div class="container">
 		<div class="row"><h2>{{ .category.Title }}</h2></div>
 		<div class="row"><p>{{ .category.Description }}</p></div>
@@ -84,10 +80,6 @@
 		</div>
 
 	</div>
-
-{{set . "parallax" "4"}}
-{{template "parallax.param.html" .}}
-
 </main>
 
 {{template "footer.html" .}}
