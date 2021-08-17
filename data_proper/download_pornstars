@@ -7,9 +7,10 @@ def dl_pornstars(href):
 while True:
 	file_exists = exists("/root/asd/data_proper/pornstar_blob")	
 	if file_exists:
-		f = open("/root/asd/data_proper/pornstar_blob","r").read()
+		f = open("/root/asd/data_proper/pornstar_blob","r")
+		data = f.read()
 		f.close()
-		data = f.split(" ")
+		data = data.split(" ")
 		map = []
 		incrementor = 1
 		for x in range(0, len(data) -1 , 3):

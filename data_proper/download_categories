@@ -14,13 +14,12 @@ while True:
 		t = 1
 		for x in data:
 			x = x.split("  ")[1]
-			print(x)
 			map_element = []
 			map_element.append(t)
 			map_element.append(x)
 			map.append(map_element)
 			t = t + 1
 		with concurrent.futures.ThreadPoolExecutor() as e:
-			e.map(dl_pornstars,map)
+			e.map(dl_categories,map)
 		break
 
