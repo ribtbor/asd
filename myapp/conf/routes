@@ -15,6 +15,7 @@ GET     /          Gif.Gifs
 
 GET	/gif/:id				Gif.Index
 GET	/gifs					Gif.Gifs
+GET	/gifs/:page				Gif.Gifs
 
 GET	/category/:id				Category.Index
 GET	/category/:id/:page			Category.Index
