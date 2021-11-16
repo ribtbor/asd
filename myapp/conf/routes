@@ -7,11 +7,11 @@ module:testrunner
 # module:jobs
 
 
-GET     /                                       Video.Videos
+GET     /          Gif.Gifs
 
-GET	/video/:id				Video.Index
-GET	/videos					Video.Videos
-GET	/videos/:page				Video.Videos
+#GET	/video/:id				Video.Index
+#GET	/videos					Video.Videos
+#GET	/videos/:page				Video.Videos
 
 GET	/gif/:id				Gif.Index
 GET	/gifs					Gif.Gifs
