@@ -13,12 +13,13 @@
 		{{ range .videos }}
     			<div class="col s12 m6 l3">
       				<div class="card" style="height:420px;">
+					
 					<div class="card-image">
   						<img src="/public/gif/{{ .Id }}.gif" alt="{{ .Title }}"/>
+						<span class="card-title"><a href="/gif/{{ .Id }}">{{ .Title}}</a></span>
 					</div>
         				<div class="card-content" style="padding:0">
-						<h5 class="white-text"><a href="/gif/{{ .Id }}" style="color:black;">{{ .Title }}</a></h5>
-          					<p style="padding:24px;">{{ .Description }}</p>
+          					<p>{{ .Description }}</p>
 					</div>
 				</div>
 			</div>

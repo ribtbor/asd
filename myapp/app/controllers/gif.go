@@ -29,13 +29,16 @@ func (c Gif) Gifs() revel.Result {
 	page, _ := strconv.Atoi(x)
 	offset := 0
 	if page > 0 {
-		offset = (page - 1) * 24
+		offset = (page - 1) * 12
 	}
 	pagination := models.Pagination{}
 	var resul int
 	DB.Table("gifss").Count(&resul)
 
-	pagination.Last = (resul/24) + 1
+	count := 0
+	DB.Model(&Gif{}).Count(&count)
+
+	pagination.Last = (count/12)
 	pagination.Next = page + 1
 	pagination.Previous = page - 1
 	if page == 0 {
@@ -54,10 +57,10 @@ func (c Gif) Gifs() revel.Result {
 	}
 
 	videos :=[]models.Gif{}
-	result := DB.Order("id desc").Limit(24).Offset(offset).Find(&videos);
+	result := DB.Order("id desc").Limit(12).Offset(offset).Find(&videos);
 	err := result.Error
 	if err != nil {
 		return c.RenderError(errors.New("Record Not Found"))
 	}
-	return c.Render(videos, pagination)
+	return c.Render(videos, pagination, count)
 }

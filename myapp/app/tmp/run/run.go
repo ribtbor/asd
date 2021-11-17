@@ -175,9 +175,10 @@ func Register() {
 				Args: []*revel.MethodArg{ 
 				},
 				RenderArgNames: map[int][]string{ 
-					62: []string{ 
+					65: []string{ 
 						"videos",
 						"pagination",
+						"count",
 					},
 				},
 			},
