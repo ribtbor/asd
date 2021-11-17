@@ -19,8 +19,9 @@ def get_pornstar_data(index):
 		img = y.select('div.thumb-inside')[0].div.a.script.string.replace("'",'"').split('document.write(xv.thumbs.replaceThumbUrl("')[1].split("<img src=")[1].split(" ")[0].replace('"','') 
 		
 		
-		data = '{} {} {} '.format(first, last, img)
-		arry.append(data)
+		if first !="" and last !="" and img !="":
+			data = '{} {} {} '.format(first, last, img)
+			arry.append(data)
 
 with concurrent.futures.ThreadPoolExecutor() as e:
 	e.map(get_pornstar_data,range(1,300))

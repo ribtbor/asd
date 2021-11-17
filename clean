@@ -1,4 +1,6 @@
 #!/bin/bash
+kill $(pgrep python3)
+
 service mysql restart
 
 mysql -u root -e "DROP DATABASE dumy"
