@@ -1,4 +1,6 @@
 #!/bin/bash
+service mysql restart
+
 mysql -u root -e "DROP DATABASE dumy"
 
 mysql -u root -e "CREATE DATABASE dumy"
@@ -15,5 +17,10 @@ rm /root/asd/myapp/public/gif/*
 
 rm /root/asd/data_proper/pornstar_blob
 rm /root/asd/data_proper/categories_blob
+
+PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
+GOROOT=/usr/local/go/
+GOPATH=$HOME/go
+export PATH GOROOT GOPATH
 
 nohup /root/go/bin/revel run /root/asd/myapp > /dev/null 2>&1 &
