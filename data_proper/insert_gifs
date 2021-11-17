@@ -5,7 +5,7 @@ def insert_gifs(index):
 	list = open("content","r").readlines()
 	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
 	mycursor = mydb.cursor()
-	mycursor.execute('INSERT INTO gifs (title,description,views) VALUES ("{}","{}")'.format(spintax.spin(list[randint(0,len(list)-1)]),spintax.spin(list[randint(0,len(list)-1)]),randint(0,10000)))
+	mycursor.execute('INSERT INTO gifs (title,description,views) VALUES ("{}","{}",{})'.format(spintax.spin(list[randint(0,len(list)-1)]),spintax.spin(list[randint(0,len(list)-1)]),randint(0,10000)))
 	mydb.commit()
 
 with concurrent.futures.ThreadPoolExecutor() as e:
