@@ -1,9 +1,19 @@
 #!/bin/bash
 mysql -u root -e "DROP DATABASE dumy"
+
+mysql -u root -e "CREATE DATABASE dumy"
+mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost'"
+mysql -u root -e "USE mysql; UPDATE user SET plugin='mysql_native_password' WHERE User='root'"
+mysql -u root -e "FLUSH PRIVILEGES"
+
+kill $(pgrep revel)
+kill $(pgrep myapp)
+
 rm /root/asd/myapp/public/img/pornstar/*
 rm /root/asd/myapp/public/img/categories/*
 rm /root/asd/myapp/public/gif/*
+
 rm /root/asd/data_proper/pornstar_blob
 rm /root/asd/data_proper/categories_blob
-kill $(pgrep revel)
-kill $(pgrep myapp)
+
+nohup /root/go/bin/revel run /root/asd/myapp > /dev/null 2>&1 &
