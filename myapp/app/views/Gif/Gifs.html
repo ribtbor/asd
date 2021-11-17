@@ -12,14 +12,15 @@
   		<div class="row">
 		{{ range .videos }}
     			<div class="col s12 m6 l3">
-      				<div class="card" style="height:420px;">
+      				<div class="card" style="height:290px;">
 					
 					<div class="card-image">
   						<img src="/public/gif/{{ .Id }}.gif" alt="{{ .Title }}"/>
-						<span class="card-title"><a href="/gif/{{ .Id }}">{{ .Title}}</a></span>
+						<span class="card-title" style="font-size:16px"><a href="/gif/{{ .Id }}">{{ .Title}}</a></span>
 					</div>
         				<div class="card-content" style="padding:0">
           					<p>{{ .Description }}</p>
+						<p><strong>Views: {{ .Views }}</strong></p>
 					</div>
 				</div>
 			</div>
