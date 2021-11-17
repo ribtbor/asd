@@ -18,9 +18,9 @@ mysql -u root -e "CREATE DATABASE dumy"
 mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost'"
 mysql -u root -e "USE mysql; UPDATE user SET plugin='mysql_native_password' WHERE User='root'"
 mysql -u root -e "FLUSH PRIVILEGES"
-nohup /root/go/bin/revel run /root/asd/myapp & 
-nohup python3 /root/asd/data_proper/download_gifs & nohup python3 /root/asd/data_proper/insert_gifs & 
-nohup python3 /root/asd/data_proper/insert_tags & 
-nohup python3 /root/asd/data_proper/get_pornstar_data & nohup python3 /root/asd/data_proper/download_pornstars &
-nohup python3 /root/asd/data_proper/get_category_data & nohup python3 /root/asd/data_proper/insert_categories & nohup python3 /root/asd/data_proper/download_categories &
-nohup python3 /root/asd/data_proper/insert_pornstars &
+nohup /root/go/bin/revel run /root/asd/myapp > /dev/null 2>&1 & 
+nohup python3 /root/asd/data_proper/download_gifs > /dev/null 2>&1 & nohup python3 /root/asd/data_proper/insert_gifs > /dev/null 2>&1 & 
+nohup python3 /root/asd/data_proper/insert_tags > /dev/null 2>&1 & 
+nohup python3 /root/asd/data_proper/get_pornstar_data > /dev/null 2>&1 & nohup python3 /root/asd/data_proper/download_pornstars > /dev/null 2>&1 &
+nohup python3 /root/asd/data_proper/get_category_data > /dev/null 2>&1 & nohup python3 /root/asd/data_proper/insert_categories > /dev/null 2>&1 & nohup python3 /root/asd/data_proper/download_categories > /dev/null 2>&1 &
+nohup python3 /root/asd/data_proper/insert_pornstars > /dev/null 2>&1 &
