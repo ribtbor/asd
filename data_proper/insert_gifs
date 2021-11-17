@@ -1,5 +1,6 @@
-import spintax, mysql.connector, concurrent.futures, time
+import spintax, mysql.connector, concurrent.futures, time, warnings
 from random import randint
+warnings.simplefilter("ignore")
 def insert_gifs(index):
 	list = open("content","r").readlines()
 #	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
