@@ -1,6 +1,8 @@
-nohup python3 /root/asd/data_proper/insert_gifs > /dev/null 2>&1 & 
-nohup python3 /root/asd/data_proper/download_gifs > /dev/null 2>&1 &
-nohup python3 /root/asd/data_proper/insert_gifs > /dev/null 2>&1 &
+python3 /root/asd/data_proper/insert_gifs & python3 /root/asd/data_proper/download_gifs &
+python3 /root/asd/data_proper/insert_tags &
+python3 /root/asd/data_proper/get_pornstar_data & python3 /root/asd/data_proper/insert_pornstars & python3 /root/asd/data_proper/download_pornstars &
+#nohup python3 /root/asd/data_proper/download_gifs > /dev/null 2>&1 &
+#nohup python3 /root/asd/data_proper/insert_gifs > /dev/null 2>&1 &
 #nohup python3 /root/asd/data_proper/insert_gifs > /dev/null 2>$1 & nohup python3 /root/asd/data_proper/download_gifs > /dev/null 2>$1 &
 
 #nohup echo "ok..." & nohup python3 /root/asd/data_proper/insert_gifs > /dev/null 2>&1 & nohup python3 /root/asd/data_proper/download_gifs > /dev/null 2>&1 & 
