@@ -1,7 +1,7 @@
 python3 /root/asd/data_proper/download_gifs & python3 /root/asd/data_proper/insert_tags &
 cd data_proper
 python3 insert_gifs &
-python3 get_pornstar_data &
+#python3 get_pornstar_data &
 python3 insert_pornstars & python3 download_pornstars &
 #python3 /root/asd/data_proper/get_pornstar_data & python3 /root/asd/data_proper/insert_pornstars & python3 /root/asd/data_proper/download_pornstars &
 #nohup python3 /root/asd/data_proper/download_gifs > /dev/null 2>&1 &
