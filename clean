@@ -17,8 +17,8 @@ rm /root/asd/myapp/public/img/pornstar/*
 rm /root/asd/myapp/public/img/categories/*
 rm /root/asd/myapp/public/gif/*
 
-rm /root/asd/data_proper/pornstar_blob
-rm /root/asd/data_proper/categories_blob
+#rm /root/asd/data_proper/pornstar_blob
+#rm /root/asd/data_proper/categories_blob
 
 PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 GOROOT=/usr/local/go/
