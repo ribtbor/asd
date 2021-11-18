@@ -2,23 +2,29 @@ import urllib.request, concurrent.futures
 from os.path import exists
 
 def dl_categories(href):
-	urllib.request.urlretrieve(href[1], "/root/myapp/public/img/categories/" + str(href[0]) +".jpg")
+#	print(href[0])
+#	print(href[1])
+	urllib.request.urlretrieve(href[1], "/root/asd/myapp/public/img/categories/" + str(href[0]) +".jpg")
 
 while True:
-	file_exists = exists("/root/asd/data_proper/categories_blob")	
+	file_exists = exists("categories_blob")	
 	if file_exists:
-		f = open("/root/asd/data_proper/categories_blob","r")
+		f = open("categories_blob","r")
 		data = f.read().lstrip(" ").split("   ")
 		f.close()
 		map = []
+		#print(data)
 		t = 1
 		for x in data:
 			x = x.split("  ")[1]
 			map_element = []
 			map_element.append(t)
 			map_element.append(x)
+			#print(t)
+			#print(x)
 			map.append(map_element)
 			t = t + 1
+		
 		with concurrent.futures.ThreadPoolExecutor() as e:
 			e.map(dl_categories,map)
 		break
