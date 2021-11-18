@@ -9,7 +9,7 @@
 		</div>
 		<div class="row">
 		{{ range .pornstars }}
-		    	<div class="col s6 m3 l2">
+		    	<div class="col s12 m6 l4">
      			 	<div class="card" style="height:425px;">
        				 	<div class="card-image">
          				 	<img src="/public/img/pornstar/{{ .Id }}.jpg" alt="Pornstar {{ .First}} {{ .Last}}" />
@@ -36,7 +36,6 @@
 		{{ end }}
   		</div>
 		<div class="row center-align">
-			{{ .pagination }}
 			<ul class="pagination">
 				<li class="waves-effect"><a href="/pornstars/1"><i class="material-icons">chevron_left</i></a></li>
     				<li class="waves-effect"><a href="/pornstars/{{ .pagination.Previous }}"><i class="material-icons">arrow_back</i></a></li>

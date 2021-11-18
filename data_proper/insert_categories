@@ -3,9 +3,10 @@ from os.path import exists
 from random import randint
 
 def ins_categories(x):
-	sql = 'INSERT INTO categories (title,views,videos) VALUES ("{}",{},{})'.format(x,randint(1,1000000),randint(1,100000))
+	sql = 'INSERT INTO categories (title,views) VALUES ("{}",{})'.format(x,randint(1,1000000))
 	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
 	mycursor = mydb.cursor()
+#	print(sql)
 	mycursor.execute(sql)
 	mydb.commit()
 
