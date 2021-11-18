@@ -1,9 +1,9 @@
 import urllib.request, concurrent.futures
 from os.path import exists
 
-#def dl_pornstars(href):
-#	print(href)
-	#urllib.request.urlretrieve(href[1], "/root/myapp/public/img/pornstar/" + str(href[0]) +".jpg")
+def dl_pornstars(href):
+#	print(href[1])
+	urllib.request.urlretrieve(href[1], "/root/asd/myapp/public/img/pornstar/" + str(href[0]) +".jpg")
 
 while True:
 	file_exists = exists("pornstar_blob")	
@@ -17,15 +17,24 @@ while True:
 		map = []
 		#print(data[2])
 		#print(len(data))
-		for x in range(2,len(data),3):
-			print(data[x])
+		#print(len(data))
+		inc = 1
+		for x in range(2,len(data)-1,3):
+			#print(x)
+#			print(data[x])
+			map_e = []
+			map_e.append(inc)
+			inc = inc +1 
+			map_e.append(data[x])	
+			map.append(map_e)
 			#inc=inc+2
 			#print(data[x] + " " + data[x+1] + " " + data[x+2])
 			#if x < len(data) - 3:
 			#	print(x)
 			#	print(data[x+2])
 				#map_e.append(x)
-				#map_e.append(x+2)		
+				#map_e.append(x+2)
+#		print(map)		
 		#for x in range(0, len(data) -1 , 3):
 		#	print(x)
 			#map_element = []
@@ -35,6 +44,6 @@ while True:
 		#	incrementor = incrementor + 1
 		#print(map)
 
-#		with concurrent.futures.ThreadPoolExecutor() as e:
-#			e.map(dl_pornstars,map)
-#		break
+		with concurrent.futures.ThreadPoolExecutor() as e:
+			e.map(dl_pornstars,map)
+		break
