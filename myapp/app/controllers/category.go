@@ -31,7 +31,7 @@ func (c Category) Index() revel.Result {
 	}
 	pagination := models.Pagination{}
 	var resul int
-	DB.Table("videos").Where("category_id=?",i).Count(&resul)
+	DB.Table("gifs").Where("category_id=?",i).Count(&resul)
 	
 	pagination.Last = (resul/24) + 1
 	pagination.Next = page + 1
@@ -51,7 +51,7 @@ func (c Category) Index() revel.Result {
 		iterator++
 	}
 
-	videos := []models.Video{}
+	videos := []models.Gif{}
 	result = DB.Where("category_id = ?",i).Offset(offset).Find(&videos)
 	err = result.Error
 	if err != nil {

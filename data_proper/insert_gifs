@@ -17,7 +17,7 @@ def insert_gifs(index):
 		#print(s2)
 		#print(r1)
 		#print(n1)
-		statement = 'INSERT INTO gifs (title,description,views) VALUES ("{}","{}",{})'.format(s1,s2,r1)
+		statement = 'INSERT INTO gifs (title,description,views,category_id) VALUES ("{}","{}",{},{})'.format(s1,s2,r1,randint(1,100))
 		#print(statement)
 		mycursor.execute(statement)
 		mydb.commit()
