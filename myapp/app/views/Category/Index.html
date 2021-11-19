@@ -9,20 +9,27 @@
 		<div class="row"><p>{{ .category.Description }}</p></div>
                 <div class="row">
                 {{ range .videos }}
-                        <div class="col s12 m6 l3">
+                        <div class="col s12 m6 l4">
                                 <div class="card">
                                         <div class="card-image">
                                                 <img src="/public/gif/{{ .Id }}.gif" alt="{{ .Title }}"/>
+					<span class="card-title" style="font-size:16px">
+						<a href="/gif/{{ .Id }}" style="color:white">{{ .Title }}</a>
+
+					</span>
                                         </div>
                                         <div class="card-content" style="padding:0">
-                                                <p style="padding:24px;">{{ .Description }}</p>
+						<p style="padding:5px;">{{ .Description }}</p>
+						 <p style="padding:5px;">{{ .Views }}</p>
+						 <p style="padding:5px;">{{ date .Created }}</p>
+                                                <!-- <p style="padding:24px;">{{ .Description }}</p> -->
+						<!-- <p style="padding:24px;">{{ .Description }}</p> -->
                                         </div>
                                 </div>
                         </div>
                 {{ end }}
                 </div>
 		<div class="row center-align">
-			{{ .pagination }}
 			<ul class="pagination">
 				<li class="waves-effect"><a href="/category/{{ .category.Id }}/1"><i class="material-icons">chevron_left</i></a></li>
     				<li class="waves-effect"><a href="/category/{{ .category.Id }}/{{ .pagination.Previous }}"><i class="material-icons">arrow_back</i></a></li>
