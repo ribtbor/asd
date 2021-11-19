@@ -13,11 +13,20 @@ def insert_gifs(index):
 #	if s1 != "" and s2 !="" and r1 != "":	
 	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
 	mycursor = mydb.cursor()
+	mycursor.execute("SELECT COUNT(id) FROM gifs")
+	myresult = mycursor.fetchone()
+	gifs = myresult[0]
+
+	mycursor.execute("SELECT COUNT(id) FROM pornstars")
+	myresult = mycursor.fetchone()
+	pornstars = myresult[0]
+
+
 		#print(s1)
 		#print(s2)
 		#print(r1)
 		#print(n1)
-	statement = 'INSERT INTO castings (video_id,pornstar_id) VALUES ({},{})'.format(randint(1,39000),randint(1,48000))
+	statement = 'INSERT INTO castings (video_id,pornstar_id) VALUES ({},{})'.format(randint(1,gifs),randint(1,pornstars))
 	#print(statement)
 	mycursor.execute(statement)
 	mydb.commit()

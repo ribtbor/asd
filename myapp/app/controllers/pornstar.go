@@ -27,9 +27,9 @@ func (c Pornstar) Index() revel.Result {
 	if err != nil {
 		return c.RenderError(errors.New("Record Not Found"))
 	}
-	videos := []models.Video{}
+	videos := []models.Gif{}
 	for i:=0; i < len(castings) ; i++ {
-		video := models.Video{}
+		video := models.Gif{}
 		result = DB.Where("id = ?", castings[i].VideoId).Find(&video)
 		err = result.Error 
 		if err != nil {
