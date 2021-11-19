@@ -1,7 +1,5 @@
-FIGURE OUT FILE DROP FUNCTIONALITY
-
-
+figure out drop file functionality
 apt update && apt install -y nano git && cd ~ && git clone https://www.github.com/ribtbor/asd.git && cd asd && source setup && ./prop_hook
 line drop prop deploy problem...
-FIX LOGO
+fix logo
 pagination for tag list and pornstar list
