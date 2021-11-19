@@ -28,9 +28,9 @@ func (c Tag) Index() revel.Result {
 		return c.RenderError(errors.New("Record Not Found"))
 	}	
 
-	videos := []models.Video{}
+	videos := []models.Gif{}
 	for i:=0; i < len(tagging) ; i++ {
-		video := models.Video{}
+		video := models.Gif{}
 		result = DB.Where("id = ?", tagging[i].VideoId).Find(&video)
 		err = result.Error 
 		if err != nil {

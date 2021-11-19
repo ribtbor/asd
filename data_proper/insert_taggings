@@ -11,13 +11,23 @@ def insert_gifs(index):
 #	r1 = randint(0,100000)
 
 #	if s1 != "" and s2 !="" and r1 != "":	
+
+
 	mydb = mysql.connector.connect(host="localhost",user="root",database="dumy")
+
+	
+
+
 	mycursor = mydb.cursor()
+	
+	mycursor.execute("SELECT COUNT(id) FROM gifs")
+	myresult = mycursor.fetchone()
+	#print(myresult[0])
 		#print(s1)
 		#print(s2)
 		#print(r1)
 		#print(n1)
-	statement = 'INSERT INTO taggings (video_id,tag_id) VALUES ({},{})'.format(randint(1,39000),randint(1,800))
+	statement = 'INSERT INTO taggings (video_id,tag_id) VALUES ({},{})'.format(randint(1,myresult[0]),randint(1,800))
 	#print(statement)
 	mycursor.execute(statement)
 	mydb.commit()
