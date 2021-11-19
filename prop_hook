@@ -5,7 +5,7 @@ python3 insert_gifs &
 python3 insert_pornstars & python3 download_pornstars &
 #pythno3 get_category_data &
 python3 insert_categories & python3 download_categories &
-python3 insert_castings &
+python3 insert_castings & python3 insert_taggings &
 
 
 

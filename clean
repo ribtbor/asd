@@ -26,3 +26,4 @@ GOPATH=$HOME/go
 export PATH GOROOT GOPATH
 
 nohup /root/go/bin/revel run /root/asd/myapp > /dev/null 2>&1 &
+sleep 15

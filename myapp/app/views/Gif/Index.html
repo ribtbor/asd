@@ -11,10 +11,17 @@
 	
 
   <div class="row">
-  	<img class="responsive-img" src="/public/gif/{{ .video.Id }}.gif" alt="{{ .video.Title }}">
+  	<img class="responsive-img" style="width:100%" src="/public/gif/{{ .video.Id }}.gif" alt="{{ .video.Title }}" />
+
   </div>
 
-    
-  </div>
+	<div class="row center-align">
+		 <ul class="pagination">
+                <li><a href="/gif/{{ .previous }}"><i class="material-icons">chevron_left</a></i></li>
+                <li><a href="/gif/{{ .next }}"><i class="material-icons">chevron_right</a></i></li>
+	        </ul>
+
+	</div>
+</div>
 </main>
 {{template "footer.html" .}}

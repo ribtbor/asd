@@ -23,4 +23,4 @@ def insert_gifs(index):
 		mydb.commit()
 
 with concurrent.futures.ThreadPoolExecutor() as e:
-	e.map(insert_gifs,range(1,8001))
+	e.map(insert_gifs,range(1,39000))

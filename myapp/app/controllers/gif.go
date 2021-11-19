@@ -21,7 +21,9 @@ func (c Gif) Index() revel.Result {
 	if err != nil {
 		return c.RenderError(errors.New("Record Not Found"))
 	}
-	return c.Render(video)
+	next := i + 1
+	previous := i - 1
+	return c.Render(video,next,previous)
 }
 
 func (c Gif) Gifs() revel.Result {
