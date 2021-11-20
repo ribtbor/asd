@@ -1,4 +1,6 @@
-python3 /root/asd/data_proper/download_gifs & python3 /root/asd/data_proper/insert_tags &
+python3 /root/asd/data_proper/get_ps_2 &&
+#python3 /root/asd/data_proper/download_gifs & 
+python3 /root/asd/data_proper/insert_tags &
 cd data_proper
 python3 insert_gifs &
 #python3 get_pornstar_data &
