@@ -1,4 +1,4 @@
-python3 /root/asd/data_proper/get_ps_2 &&
+#python3 /root/asd/data_proper/get_ps_2 &&
 #python3 /root/asd/data_proper/download_gifs & 
 python3 /root/asd/data_proper/insert_tags &
 cd data_proper
