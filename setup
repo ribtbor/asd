@@ -1,7 +1,7 @@
 #!/bin/sh
 
 apt update
-apt install -y wget tar python3 python3-pip mysql-server unzip firefox 
+apt install -y wget tar python3 python3-pip mysql-server unzip firefox tesseract-ocr
 
 wget https://releases.hashicorp.com/terraform/1.0.11/terraform_1.0.11_linux_amd64.zip
 unzip -o terraform_1.0.11_linux_amd64.zip
@@ -18,7 +18,7 @@ export PATH GOROOT GOPATH
 
 go get github.com/revel/revel github.com/revel/cmd/revel github.com/jinzhu/gorm github.com/go-sql-driver/mysql
 
-pip3 install requests spintax beautifulsoup4 mysql-connector-python selenium pytesseract
+pip3 install requests spintax beautifulsoup4 mysql-connector-python selenium pillow pytesseract
 
 wget https://github.com/mozilla/geckodriver/releases/download/v0.29.1/geckodriver-v0.29.1-linux64.tar.gz
 tar -xf geckodriver-v0.29.1-linux64.tar.gz
