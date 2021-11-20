@@ -1,0 +1,20 @@
+import requests, concurrent.futures, urllib.request
+from bs4 import BeautifulSoup
+
+res = requests.get("http://porngif.top/")
+soup = BeautifulSoup(res.content,"html.parser")
+html = soup.find_all("img",class_="big")
+
+blob = ""
+for x in range(1,100):
+	res = requests.get("http://porngif.top/")
+	soup = BeautifulSoup(res.content,"html.parser")
+	html = soup.find_all("img",class_="big")
+	for y in html:
+		if y.get("data-src") != None:
+			href = "http://www.porngif.top/" + str(y.get("data-src"))
+			h = href.replace(" ","%20")
+			blob = blob +"  " +h
+file = open("blob2","w")
+file.write(blob)
+file.close()
