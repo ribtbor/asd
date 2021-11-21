@@ -1,10 +1,9 @@
 #!/bin/sh
-
-apt update
-apt install -y firefox <<-EOF
-    12
-    5
-EOF
+#apt update
+#apt install -y firefox <<-EOF
+#    12
+#    5
+#EOF
 apt install -y wget tar python3 python3-pip mysql-server unzip tesseract-ocr
 
 wget https://releases.hashicorp.com/terraform/1.0.11/terraform_1.0.11_linux_amd64.zip
