@@ -3,7 +3,10 @@ apt update
 adduser --disabled-password --gecos "" blah
 apt install -y wget tar python3 python3-pip mysql-server unzip tesseract-ocr
 
-wget https://download-installer.cdn.mozilla.net/firefox-94.0.1.tar.bz2
+wget -O firefox.tar.bz2 "https://download.mozilla.org/?product=firefox-latest&os=linux64"
+tar -xf firefox.tar.bz2
+rm firefox.tar.bz2
+mv firefox /home/blah
 
 wget https://releases.hashicorp.com/terraform/1.0.11/terraform_1.0.11_linux_amd64.zip
 unzip -o terraform_1.0.11_linux_amd64.zip
