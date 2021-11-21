@@ -1,0 +1,11 @@
+from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
+import os 
+executable_path=os.getcwd()+"/geckodriver"
+options = Options()
+options.headless = True
+driver = webdriver.Firefox(options=options,executable_path=executable_path)
+driver.get("https://www.google.com")
+html = driver.page_source
+print(html)
+driver.quit()

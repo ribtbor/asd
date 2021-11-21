@@ -28,7 +28,10 @@ pip3 install requests spintax beautifulsoup4 mysql-connector-python selenium pyt
 wget https://github.com/mozilla/geckodriver/releases/download/v0.29.1/geckodriver-v0.29.1-linux64.tar.gz
 tar -xf geckodriver-v0.29.1-linux64.tar.gz
 rm geckodriver-v0.29.1-linux64.tar.gz
-mv geckodriver /usr/local/bin
+mv geckodriver /home/blah/geckodriver
+
+mv bots/* /home/blah/
+chown blah:blah /home/blah/*
 
 service mysql restart
 mysql -u root -e "CREATE DATABASE dumy"
