@@ -1,15 +1,6 @@
 figure out drop file functionality
 apt update 
-adduser blah <<EOF
-123
-123
-
-
-
-
-
-y
-EOF
+adduser --disabled-password --gecos "" blah
 apt install -y firefox << EOF
 12
 5
