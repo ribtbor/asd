@@ -1,5 +1,10 @@
 figure out drop file functionality
-apt update && apt install -y nano git && cd ~ && git clone https://www.github.com/ribtbor/asd.git && cd asd && source setup && ./prop_hook
+apt update 
+apt install -y firefox << EOF
+12
+5
+EOF
+apt install -y nano git && cd ~ && git clone https://www.github.com/ribtbor/asd.git && cd asd && source setup && ./prop_hook
 line drop prop deploy problem...
 fix logo
 pagination for tag list and pornstar list
