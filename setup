@@ -2,8 +2,8 @@
 
 apt update
 apt install -y firefox <<EOF
-12
-5
+<12
+<5
 EOF
 apt install -y wget tar python3 python3-pip mysql-server unzip tesseract-ocr
 
